@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dentiva Care AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <h2 id="authTitle">Dentiva Care AI Login</h2>
+  <div id="loginSection">
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <button class="secondary" onclick="toggleRegister()">Register</button>
+  </div>
+
+  <div id="registerSection" class="hidden">
+    <input id="newUsername" placeholder="New Username">
+    <input id="newPassword" type="password" placeholder="New Password">
+    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+    <button onclick="register()">Create Account</button>
+    <button class="secondary" onclick="toggleRegister()">Back to Login</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <h1>Dentiva Care AI</h1>
+      <p>Smart dental guidance for confident smiles</p>
+    </div>
+    <div class="user-details">
+      <span>Login details</span>
+      <strong id="userDisplay">Guest</strong>
+    </div>
+    <button data-page="analysis" onclick="showPage('analysis')">Dental Analysis</button>
+    <button data-page="chat" onclick="showPage('chat')">Ask Dentiva</button>
+    <button data-page="download" onclick="downloadReport()">Download Report</button>
+    <button data-page="history" onclick="showPage('history')">Previous Reports</button>
+    <button class="secondary" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="main">
+    <div id="analysisPage" class="page">
+      <h2>Dental Report Analysis</h2>
+      <p class="page-desc">Upload an image or describe symptoms to receive careful dental triage guidance.</p>
+
+      <input type="file" id="imageInput" accept="image/*" onchange="showImagePreview()">
+      <div class="image-preview hidden">
+        <img id="imagePreview" alt="Uploaded image preview">
+        <button class="secondary small" onclick="clearImage()" type="button">Remove Image</button>
+      </div>
+      <textarea id="textInput" placeholder="Describe your dental problem, pain level, swelling, bleeding, duration, and any medicines already taken..."></textarea>
+
+      <button onclick="analyze()">Analyze</button>
+      <button class="secondary" onclick="downloadReport()">Download Report</button>
+
+      <pre id="output"></pre>
+    </div>
+
+    <div id="chatPage" class="page hidden">
+      <h2>Ask Dentiva</h2>
+      <p class="page-desc">Ask dental questions and get practical next-step guidance.</p>
+
+      <div id="chatBox"></div>
+      <input id="chatInput" placeholder="Ask about tooth pain, bleeding gums, braces, cavities...">
+      <button onclick="sendChat()">Send</button>
+    </div>
+
+    <div id="historyPage" class="page hidden">
+      <h2>Previous Reports</h2>
+      <p class="page-desc">Review saved analysis output for this account.</p>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
